@@ -16,14 +16,35 @@
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
-            
-            
 
+            <Grid
+                x:Name="ColorBtnGrid"
+                HorizontalOptions="Center"
+                ColumnDefinitions="Auto, Auto"
+                Margin="0,10,0,0">
+                <!-- Codigo hex -->
+                <Label
+                    x:Name="ColorBtnText"
+                    Text="Generated Color"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    TextColor="Black" />
+                <!-- Cuadrado de color -->
+                <BoxView
+                    x:Name="ColorSquare"
+                    WidthRequest="20"
+                    HeightRequest="20"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    BackgroundColor="White"
+                    Margin="10,0,0,0"
+                    Grid.Column="1" />
+            </Grid>
+            
         
-
             <Button
                 x:Name="CounterBtn"
-                Text="Click me" 
+                Text="Generate Random Color" 
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
