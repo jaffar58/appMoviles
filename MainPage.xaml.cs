@@ -1,36 +1,58 @@
-﻿namespace appMovil;
+﻿using Microsoft.Maui.Controls;
+using System;
+
+namespace appMovil;
 
 public partial class MainPage : ContentPage
 {
-	private string color = "#FFFFFF"; // Default color (white)
-	
 
 	public MainPage()
 	{
 		InitializeComponent();
+		UpdateColor();
 	}
 
+	private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
+    {
+            UpdateColor();
+	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
+	private void UpdateColor()
 	{
-		Random random = new Random();
+        int r = (int)RedSlider.Value;
+        int g = (int)GreenSlider.Value;
+        int b = (int)BlueSlider.Value;
+
+		var color = Color.FromRgb(r, g, b);
+		ColorPreview.Color = color;
+
+        HexLabel.Text = $"#{r:X2}{g:X2}{b:X2}";
+	}
+
+	private void OnRandomColorClicked(object sender, EventArgs e)
+    {
+        Random random = new Random();
 		int red = random.Next(0, 256);
 		int green = random.Next(0, 256);
 		int blue = random.Next(0, 256);
 
-		// Generate the hex color
-		color = $"#{red:X2}{green:X2}{blue:X2}";
+		RedSlider.Value = red;
+		GreenSlider.Value = green;
+		BlueSlider.Value = blue;
 
-		// Update the text and color square
-		ColorBtnText.Text = color; // Update the label text
-		ColorSquare.BackgroundColor = Color.FromArgb(color); // Update the square color
+		var color = Color.FromRgb(red, green, blue);
+		ColorPreview.Color = color;
+		HexLabel.Text = $"#{red:X2}{green:X2}{blue:X2}";
 
-		// Change the background color of CounterBtn
-		CounterBtn.BackgroundColor = Color.FromArgb(color);
+		this.BackgroundColor = color;
 
-		// Announce the updated text for accessibility
-		SemanticScreenReader.Announce(CounterBtn.Text);
-		SemanticScreenReader.Announce(ColorBtnText.Text);
-	}
+        UpdateColor();
+    }
+
+	private async void OnCopyColorClicked(object sender, EventArgs e)
+    {
+        string hexCode = HexLabel.Text;
+        await Clipboard.SetTextAsync(hexCode);
+        await DisplayAlert("Copiado", $"Color {hexCode} copiado al portapapeles.", "OK");
+    }
 }
-
