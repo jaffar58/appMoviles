@@ -40,7 +40,7 @@ public partial class MainPage : ContentPage
 		GreenSlider.Value = green;
 		BlueSlider.Value = blue;
 
-		this.BackgroundColor = Color.FromRgb(red, green, blue);;
+		this.BackgroundColor = Color.FromRgb(red, green, blue);
 
         UpdateColor();
 
@@ -50,6 +50,6 @@ public partial class MainPage : ContentPage
     {
         string hexCode = HexLabel.Text;
         await Clipboard.SetTextAsync(hexCode);
-        await DisplayAlert("Copiado", $"Color {hexCode} copiado al portapapeles.", "OK");
+        await DisplayAlert("Color copiado", $"Codigo de color {hexCode} copiado!", "Ok");
     }
 }
