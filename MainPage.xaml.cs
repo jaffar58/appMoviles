@@ -40,13 +40,10 @@ public partial class MainPage : ContentPage
 		GreenSlider.Value = green;
 		BlueSlider.Value = blue;
 
-		var color = Color.FromRgb(red, green, blue);
-		ColorPreview.Color = color;
-		HexLabel.Text = $"#{red:X2}{green:X2}{blue:X2}";
-
-		this.BackgroundColor = color;
+		this.BackgroundColor = Color.FromRgb(red, green, blue);;
 
         UpdateColor();
+
     }
 
 	private async void OnCopyColorClicked(object sender, EventArgs e)

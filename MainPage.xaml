@@ -17,6 +17,7 @@
                        HorizontalOptions="Center"
                        FontAttributes="Bold"
                        TextColor="Black"/>
+                
                 <Frame HasShadow="True" BorderColor="LightGray" CornerRadius="20" HeightRequest="150">
                     <BoxView x:Name="ColorPreview" CornerRadius="20"/>
                 </Frame>
